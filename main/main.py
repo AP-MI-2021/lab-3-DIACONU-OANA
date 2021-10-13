@@ -6,7 +6,8 @@ def show_menu():
     print('2. Determinare cea mai lungă subsecvenţă cu proprietatea ca toate numerele sunt prime')
     print('3. Determinare cea mai lungă subsecvență cu proprietatea ca toate numerele sunt palindroame')
     print('4.Determinare cea mai lunga subsecventa cu proprietatea ca toate numerele sunt neprime')
-    print('5.Iesire')
+    print ('5.Iesire')
+
 
 def read_list() -> List[int]:
     lst = []
@@ -177,7 +178,7 @@ def main():
         elif opt == '3':
             print('Cea mai lunga subsecventa cu toate numerele palindroame este:',get_longest_all_palindromes(lst))
         elif opt == '4':
-            print('Cea mai lunga subsecventa cu toate numerele neprime este:',get_longest_all_not_prime(lst))
+            print('Cea mai lunga subsecventa cu toate numerele neprime este',get_longest_all_not_prime(lst))
         elif opt =='5':
             break
         else:
