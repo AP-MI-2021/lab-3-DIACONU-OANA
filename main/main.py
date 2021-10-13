@@ -5,7 +5,8 @@ def show_menu():
     print('1. Citire date')
     print('2. Determinare cea mai lungă subsecvenţă cu proprietatea ca toate numerele sunt prime')
     print('3. Determinare cea mai lungă subsecvență cu proprietatea ca toate numerele sunt palindroame')
-    print('4.Iesire')
+    print('4.Determinare cea mai lunga subsecventa cu proprietatea ca toate numerele sunt neprime')
+    print('5.Iesire')
 
 def read_list() -> List[int]:
     lst = []
@@ -115,6 +116,53 @@ def test_get_longest_all_palindromes():
 
 test_get_longest_all_palindromes()
 
+def nr_neprim(n) ->bool:
+#Determina daca un numar este neprim, adica daca numarul divizorilor >2.
+nrd=0
+    for i in range(1,n+1):
+        if n%i==0:
+            nrd=nrd+1
+    if(nrd>2):
+        return True
+    retrun False
+
+def test_nr_neprim():
+    assert nr_neprim(3) == False
+    assert nr_neprim(4) == True
+    assert nrne_prim(7) == False
+
+test_nr_neprim()
+
+
+def toate_elementele_neprime(lst):
+#Determina daca toate numerele dintr-o secventa a listei lst sunt neprime
+    for x in lst:
+        if nr_neprim(x) is False:
+            return False
+    return True
+
+
+def get_longest_all_not_prime(lst: List[int]) -> List[int]:
+    '''
+    Determina cea mai lungă subsecvenţă cu proprietatea ca toate numerele sunt neprime.
+    :param lst: lista in care se cauta subsecventa
+    :return: subsecventa gasita
+    '''
+
+    result3 = []
+    for i in range(len(lst)):
+        for j in range(len(lst)):
+            if toate_elementele_neprime(lst[i:j+1]) and len(lst[i:j+1]) > len(result3):
+                resul3t=lst[i:j+1]
+    return result3
+
+
+def test_get_longest_all_not_prime():
+    assert get_longest_all_not_prime([2,3,5,8,10,12,40,9,11]) == [8,10,12,40]
+    assert get_longest_all_not_prime([5,7,13,11,45,27,63,54,67,20,]) == [45,27,63,54]
+
+
+test_get_longest_all_not_prime()
 
 
 def main():
@@ -128,7 +176,9 @@ def main():
             print('Cea mai lunga subsecventa cu toate numerele prime este:',get_longest_all_primes(lst))
         elif opt == '3':
             print('Cea mai lunga subsecventa cu toate numerele palindroame este:',get_longest_all_palindromes(lst))
-        elif opt =='4':
+        elif opt == '4':
+            print('Cea mai lunga subsecventa cu toate numerele neprime este:',get_longest_all_not_prime(lst))
+        elif opt =='5':
             break
         else:
             print('Optiune invalida.')
