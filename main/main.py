@@ -20,7 +20,12 @@ def read_list() -> List[int]:
 
 
 def nr_prim(n) -> bool:
-#functia determina daca un numar este prim sau nu
+    '''
+    Determina daca un numar este prim.
+    :param n: numarul considerat
+    :return: True daca numarul este prim, False in caz contrar.
+    '''
+
     if n < 2:
         return False
     for i in range(2,n//2 + 1):
@@ -38,7 +43,12 @@ test_nr_prim()
 
 
 def toate_elementele_prime(lst):
-#Determina daca toate numerele dintr-o secventa a listei lst sunt prime
+    '''
+    Determina daca toate numerele dintr-o secventa a listei lst sunt prime
+    :param lst: lista de inturi
+    :return: True daca toate numerele din subsecventa sunt prime, False in caz contrar.
+    '''
+
     for x in lst:
         if nr_prim(x) is False:
             return False
@@ -62,14 +72,18 @@ def get_longest_all_primes(lst: List[int]) -> List[int]:
 
 def test_get_longest_all_primes():
     assert get_longest_all_primes([2,3,5,8,9,11]) == [2,3,5]
-    assert get_longest_all_primes([5,7,13,11,45,67,20,]) == [5,7,13,11]
-
+    assert get_longest_all_primes([5,7,13,11,45,67,20]) == [5,7,13,11]
+    assert get_longest_all_primes([5,2,13,11,30]) == [5,2,13,11]
 
 test_get_longest_all_primes()
 
 
 def is_palindrome(n) ->bool:
-    #Determina daca un numar este palindrom
+    '''
+    Determina daca un numar este palindrom.
+    :param n: numarul considerat
+    :return: True daca numarul este palindrom, False in caz contrar.
+    '''
     ogl = 0
     x = n
     while x > 0:
@@ -91,7 +105,12 @@ def test_is_palindrome():
 test_is_palindrome()
 
 def toate_elementele_palindroame(lst):
-# Determina daca toate numerele dintr-o secventa a listei lst sunt palindroame
+    '''
+    Determina daca toate numerele dintr-o secventa a listei lst sunt palindroame
+    :param lst: lista de inturi
+    :return: True daca toate numerele din secventa sunt palindrom, False in caz contrar.
+    '''
+
     for x in lst:
         if is_palindrome(x) is False:
             return False
@@ -113,30 +132,38 @@ def get_longest_all_palindromes(lst: list[int]) -> List[int]:
 def test_get_longest_all_palindromes():
     assert get_longest_all_palindromes([22,145,209 ,676,909,555]) == [676,909,555]
     assert get_longest_all_palindromes([4,7,9,3,4567,10]) ==[4,7,9,3]
-
+    assert get_longest_all_palindromes([3,4567,101,202]) ==[101,202]
 
 test_get_longest_all_palindromes()
 
 def nr_neprim(n) ->bool:
-#Determina daca un numar este neprim, adica daca numarul divizorilor >2.
-nrd=0
+    '''
+    Determina daca un numar este neprim, adica daca numarul divizorilor >2.
+    :param n: numarul considerat
+    :return: True daca numarul este neprim, False in caz contrar.
+    '''
+    nrd=0
     for i in range(1,n+1):
         if n%i==0:
             nrd=nrd+1
     if(nrd>2):
         return True
-    retrun False
+    return False
 
 def test_nr_neprim():
     assert nr_neprim(3) == False
     assert nr_neprim(4) == True
-    assert nrne_prim(7) == False
+    assert nr_neprim(7) == False
 
 test_nr_neprim()
 
 
 def toate_elementele_neprime(lst):
-#Determina daca toate numerele dintr-o secventa a listei lst sunt neprime
+    '''
+    Determina daca toate numerele dintr-o secventa a listei lst sunt neprime
+    :param lst: lista de inturi
+    :return: True daca toate  numerele din subsecventa sunt neprime, False in caz contrar.
+    '''
     for x in lst:
         if nr_neprim(x) is False:
             return False
@@ -154,14 +181,14 @@ def get_longest_all_not_prime(lst: List[int]) -> List[int]:
     for i in range(len(lst)):
         for j in range(len(lst)):
             if toate_elementele_neprime(lst[i:j+1]) and len(lst[i:j+1]) > len(result3):
-                resul3t=lst[i:j+1]
+                result3=lst[i:j+1]
     return result3
 
 
 def test_get_longest_all_not_prime():
-    assert get_longest_all_not_prime([2,3,5,8,10,12,40,9,11]) == [8,10,12,40]
-    assert get_longest_all_not_prime([5,7,13,11,45,27,63,54,67,20,]) == [45,27,63,54]
-
+    assert get_longest_all_not_prime([2,3,5,8,10,12,40,9,11]) == [8,10,12,40,9]
+    assert get_longest_all_not_prime([5,7,13,11,45,27,63,54,67,20]) == [45,27,63,54]
+    assert get_longest_all_not_prime([5,7,13,12,18,36,20]) == [12,18,36,20]
 
 test_get_longest_all_not_prime()
 
@@ -178,7 +205,7 @@ def main():
         elif opt == '3':
             print('Cea mai lunga subsecventa cu toate numerele palindroame este:',get_longest_all_palindromes(lst))
         elif opt == '4':
-            print('Cea mai lunga subsecventa cu toate numerele neprime este',get_longest_all_not_prime(lst))
+            print('Cea mai lunga subsecventa cu toate numerele neprime este:',get_longest_all_not_prime(lst))
         elif opt =='5':
             break
         else:
